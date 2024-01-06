@@ -1,0 +1,215 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fmodern\fcharset0 Courier-Oblique;}
+{\colortbl;\red255\green255\blue255;\red0\green29\blue164;\red10\green79\blue103;\red9\green9\blue9;
+\red121\green121\blue121;\red114\green0\blue130;\red17\green109\blue18;\red2\green34\blue149;\red18\green51\blue230;
+\red140\green119\blue13;\red233\green252\blue233;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c11373\c64314;\csgenericrgb\c3922\c30980\c40392;\csgenericrgb\c3529\c3529\c3529;
+\csgenericrgb\c47451\c47451\c47451;\csgenericrgb\c44706\c0\c50980;\csgenericrgb\c6667\c42745\c7059;\csgenericrgb\c784\c13333\c58431;\csgenericrgb\c7059\c20000\c90196;
+\csgenericrgb\c54902\c46667\c5098;\csgenericrgb\c91373\c98824\c91373;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww14840\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs26 \cf2 private void \cf3 modifyFacilityDurationPrice\cf4 () \cf2 throws \cf0 InterruptedException \cf4 \{\
+        
+\f1\i \cf5 // Select facility\
+        
+\f0\i0 \cf0 WebElement facilityDropdown \cf4 = \cf6 wait\cf4 .until(\cf0 ExpectedConditions\cf4 .
+\f1\i elementToBeClickable
+\f0\i0 (\cf0 By\cf4 .
+\f1\i id
+\f0\i0 (\cf7 "facility"\cf4 )));\
+        \cf0 Select facilitySelect \cf4 = \cf2 new \cf4 Select(\cf0 facilityDropdown\cf4 );\
+        \cf0 facilitySelect\cf4 .selectByVisibleText(\cf7 "North Tillman - Alaska sheep"\cf4 );\
+\
+        
+\f1\i \cf5 // Select duration\
+        
+\f0\i0 \cf0 WebElement durationDropdown \cf4 = \cf6 wait\cf4 .until(\cf0 ExpectedConditions\cf4 .
+\f1\i elementToBeClickable
+\f0\i0 (\cf0 By\cf4 .
+\f1\i id
+\f0\i0 (\cf7 "durationUnit"\cf4 )));\
+        \cf0 Select durationSelect \cf4 = \cf2 new \cf4 Select(\cf0 durationDropdown\cf4 );\
+        \cf0 durationSelect\cf4 .selectByVisibleText(\cf7 "Hours"\cf4 );\
+\
+        
+\f1\i \cf5 // Enter duration value\
+        
+\f0\i0 \cf0 WebElement durationInput \cf4 = \cf6 wait\cf4 .until(\cf0 ExpectedConditions\cf4 .
+\f1\i presenceOfElementLocated
+\f0\i0 (\cf0 By\cf4 .
+\f1\i id
+\f0\i0 (\cf7 "duration"\cf4 )));\
+        \cf0 durationInput\cf4 .clear();\
+        \cf0 durationInput\cf4 .sendKeys(\cf7 "1"\cf4 );\
+\
+        
+\f1\i \cf5 // Select price (if it's in a dropdown, replace "priceDropdown" with the actual identifier)\
+        
+\f0\i0 \cf0 WebElement selectPriceField \cf4 = \cf6 wait\cf4 .until(\cf0 ExpectedConditions\cf4 .
+\f1\i presenceOfElementLocated
+\f0\i0 (\cf0 By\cf4 .
+\f1\i xpath
+\f0\i0 (\cf7 "//*[@id=\cf8 \\"\cf7 includingVat\cf8 \\"\cf7 ]"\cf4 )));\
+        \cf0 selectPriceField\cf4 .clear();\
+        \cf0 selectPriceField\cf4 .sendKeys(\cf7 "50"\cf4 );\
+        \cf0 selectPriceField\cf4 .sendKeys(\cf0 Keys\cf4 .
+\f1\i \cf6 ENTER
+\f0\i0 \cf4 );\
+\
+        
+\f1\i \cf5 //clicks the calendar\
+        
+\f0\i0 \cf0 WebElement datePicker \cf4 = \cf6 driver\cf4 .findElement(\cf0 By\cf4 .
+\f1\i xpath
+\f0\i0 (\cf7 "//lib-input-datepicker/div/div[1]"\cf4 ));\
+        \cf0 datePicker\cf4 .click();\
+\
+        \cf0 WebElement monthSelect \cf4 = \cf6 driver\cf4 .findElement(\cf0 By\cf4 .
+\f1\i xpath
+\f0\i0 (\cf7 "//select[@aria-label='Select month']"\cf4 ));\
+        \cf0 WebElement yearSelect \cf4 = \cf6 driver\cf4 .findElement(\cf0 By\cf4 .
+\f1\i xpath
+\f0\i0 (\cf7 "//select[@aria-label='Select year']"\cf4 ));\
+        \cf0 Select monthDropdown \cf4 = \cf2 new \cf4 Select(\cf0 monthSelect\cf4 );\
+        \cf0 Select yearDropdown \cf4 = \cf2 new \cf4 Select(\cf0 yearSelect\cf4 );\
+        \cf0 monthDropdown\cf4 .selectByVisibleText(\cf7 "Nov"\cf4 );\
+        \cf0 yearDropdown\cf4 .selectByValue(\cf7 "2023"\cf4 );\
+        \cf0 WebElement desiredDate \cf4 = \cf6 driver\
+            \cf4 .findElement(\cf0 By\cf4 .
+\f1\i xpath
+\f0\i0 (\cf7 "//span[contains(text(), '18')]"\cf4 ));\
+        \cf0 desiredDate\cf4 .click();\
+\
+        
+\f1\i \cf5 //click time\
+        
+\f0\i0 \cf0 WebElement TimePicker \cf4 = \cf6 driver\cf4 .findElement(\cf0 By\cf4 .
+\f1\i xpath
+\f0\i0 (\cf7 "//lib-input-timepicker/div/div[1]"\cf4 ));\
+        \cf0 TimePicker\cf4 .click();\
+\
+        
+\f1\i \cf5 //Enter Hours\
+        
+\f0\i0 \cf0 WebElement hourInput \cf4 = \cf6 wait\cf4 .until(\cf0 ExpectedConditions\cf4 .
+\f1\i presenceOfElementLocated
+\f0\i0 (\cf0 By\cf4 .
+\f1\i xpath
+\f0\i0 (\cf7 "//div[@class='px-3 dropdown-menu show']//input[@placeholder='HH']"\cf4 )));\
+        \cf0 hourInput\cf4 .clear();\
+        \cf0 hourInput\cf4 .sendKeys(\cf0 String\cf4 .
+\f1\i valueOf
+\f0\i0 (\cf9 10\cf4 ));\
+\
+       
+\f1\i \cf5 //Enter minutes\
+        
+\f0\i0 \cf0 WebElement minInput \cf4 = \cf6 wait\cf4 .until(\cf0 ExpectedConditions\cf4 .
+\f1\i presenceOfElementLocated
+\f0\i0 (\cf0 By\cf4 .
+\f1\i xpath
+\f0\i0 (\cf7 "//div[@class='px-3 dropdown-menu show']//input[@placeholder='MM']"\cf4 )));\
+        \cf0 minInput\cf4 .clear();\
+        \cf0 minInput\cf4 .sendKeys(\cf0 String\cf4 .
+\f1\i valueOf
+\f0\i0 (\cf9 30\cf4 ));\
+\
+        
+\f1\i \cf5 //select and enter vat\
+        
+\f0\i0 \cf0 WebElement vatDropdown \cf4 = \cf6 wait\cf4 .until(\cf0 ExpectedConditions\cf4 .
+\f1\i elementToBeClickable
+\f0\i0 (\cf0 By\cf4 .
+\f1\i id
+\f0\i0 (\cf7 "vatPercentage"\cf4 )));\
+        \cf0 Select select \cf4 = \cf2 new \cf4 Select(\cf0 vatDropdown\cf4 );\
+        \cf0 select\cf4 .selectByVisibleText(\cf7 "15%"\cf4 );\
+\
+        
+\f1\i \cf5 //Internal Notes\
+        
+\f0\i0 \cf0 WebElement internalNotes \cf4 = \cf6 wait\cf4 .until(\cf0 ExpectedConditions\cf4 .
+\f1\i presenceOfElementLocated
+\f0\i0 (\cf0 By\cf4 .
+\f1\i cssSelector
+\f0\i0 (\cf7 "#notes"\cf4 )));\
+        \cf0 internalNotes\cf4 .sendKeys(\cf7 "Internal Text"\cf4 );\
+\
+        
+\f1\i \cf5 //External Notes\
+        
+\f0\i0 \cf0 WebElement customerText \cf4 = \cf6 wait\cf4 .until(\cf0 ExpectedConditions\cf4 .
+\f1\i presenceOfElementLocated
+\f0\i0 (\cf0 By\cf4 .
+\f1\i cssSelector
+\f0\i0 (\cf7 "#customerNotes"\cf4 )));\
+        \cf0 customerText\cf4 .sendKeys(\cf7 "Customer Text"\cf4 );\
+\
+
+\f1\i \cf5 //        WebElement saveBtn = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("save")));\
+//        saveBtn.click();\
+//        Thread.sleep(5000);\
+\
+\
+\
+\
+stash@\{0\}: WIP on SB-4048-automate-bulk-edit: 016dd7571 [SB-4048] Automate-bulk-edit\
+stash@\{1\}: WIP on develop: 914fa5586 Merged in SB-3927-automate-booking-table (pull request #3572)\
+stash@\{2\}: WIP on SB-3927-automate-booking-table: 1a1285bb5 Merged in bugfix/SB-3919-upcoming-or-unpaid-bookings (pull request #3515)\
+stash@\{3\}: WIP on SB-3853-automate-bookings: e639a2d07 Merged in feature/SB-3817-activity-type-search (pull request #3418)\
+stash@\{4\}: WIP on SB-3853-automate-bookings: e639a2d07 Merged in feature/SB-3817-activity-type-search (pull request #3418)\
+stash@\{5\}: WIP on SB-3853-automate-bookings: e639a2d07 Merged in feature/SB-3817-activity-type-search (pull request #3418)\
+stash@\{6\}: WIP on SB-3706-automate-spaces: 7189557e0 [SB-3706]Automate Spaces\
+stash@\{7\}: WIP on SB-3706-automate-spaces: a5e1f2d96 Merged in SB-3768-portal-order-summary (pull request #3364)\
+stash@\{8\}: WIP on SB-3606-automate-forgot-workspace: 51d038009 Merged in SB-3618-create-edit-existing-new-customer-for-cutomer-type (pull request #3200)\
+stash@\{9\}: WIP on SB-3580-automation-first-steps: 98dbb85f4 Merged in feature/SB-3574-add-customer-to-block-booking-for-type-discount-calculation (pull request #3155)\
+\
+\
+
+\f0\i0 \cf10 @And\cf4 (\cf7 "\cb11 ^I Verify all the updated bookings price is showing as \cf8 \\"\cf7 ([^\cf8 \\"\cf7 ]*)\cf8 \\"\cf7 $\cb1 "\cf4 )\
+\cf2 public void \cf3 iVerifyAllTheUpdatedBookingsPriceIsShowingAs\cf4 (\cf0 String \cf4 expectedPrice) \cf2 throws \cf0 InterruptedException \cf4 \{\
+    \cf0 List\cf4 <\cf0 WebElement\cf4 > \cf0 editButtons \cf4 = \cf6 driver\cf4 .findElements(\cf0 By\cf4 .
+\f1\i xpath
+\f0\i0 (\cf7 "//ws-sb-summary-item-actions/div/div/lib-ng-icon"\cf4 ));\
+\
+    \cf2 if \cf4 (\cf0 editButtons\cf4 .isEmpty()) \{\
+        \cf0 System\cf4 .
+\f1\i \cf6 out
+\f0\i0 \cf4 .println(\cf7 "No entries found in the summary modal."\cf4 );\
+    \} \cf2 else \cf4 \{\
+        \cf2 for \cf4 (\cf2 int \cf0 i \cf4 = \cf9 0\cf4 ; \cf0 i \cf4 < \cf0 editButtons\cf4 .size(); \cf0 i\cf4 ++) \{\
+            \cf0 WebElement editButton \cf4 = \cf0 editButtons\cf4 .get(\cf0 i\cf4 );\
+            \cf0 editButton\cf4 .click();\
+            
+\f1\i \cf5 // Assuming you have a method to verify the price of the current entry\
+            
+\f0\i0 \cf2 boolean \cf0 isPriceValid \cf4 = verifyEnteredPriceForEntry(\cf0 i\cf4 , expectedPrice);\
+\
+            \cf2 if \cf4 (\cf0 isPriceValid\cf4 ) \{\
+                \cf0 System\cf4 .
+\f1\i \cf6 out
+\f0\i0 \cf4 .println(\cf7 "Entered price verified for entry " \cf4 + \cf0 i\cf4 );\
+            \} \cf2 else \cf4 \{\
+                \cf0 System\cf4 .
+\f1\i \cf6 out
+\f0\i0 \cf4 .println(\cf7 "Entered price verification failed for entry " \cf4 + \cf0 i\cf4 );\
+            \}\
+            
+\f1\i \cf5 // Navigate back to the summary modal\
+            
+\f0\i0 \cf6 driver\cf4 .navigate().back();\
+            \cf0 Thread\cf4 .
+\f1\i sleep
+\f0\i0 (\cf9 5000\cf4 );\
+            \cf0 editButtons \cf4 = \cf6 driver\cf4 .findElements(\cf0 By\cf4 .
+\f1\i xpath
+\f0\i0 (\cf7 "//ws-sb-summary-item-actions/div/div/lib-ng-icon"\cf4 )); 
+\f1\i \cf5 // Refresh the list\
+        
+\f0\i0 \cf4 \}\
+    \}\
+\}\
+
+\f1\i \cf5 \
+}

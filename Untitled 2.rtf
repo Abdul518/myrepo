@@ -1,0 +1,70 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-Oblique;
+}
+{\colortbl;\red255\green255\blue255;\red140\green119\blue13;\red0\green29\blue164;\red9\green9\blue9;
+\red33\green99\blue214;\red121\green121\blue121;\red17\green109\blue18;\red233\green252\blue233;\red10\green79\blue103;
+\red114\green0\blue130;}
+{\*\expandedcolortbl;;\csgenericrgb\c54902\c46667\c5098;\csgenericrgb\c0\c11373\c64314;\csgenericrgb\c3529\c3529\c3529;
+\csgenericrgb\c12941\c38824\c83922;\csgenericrgb\c47451\c47451\c47451;\csgenericrgb\c6667\c42745\c7059;\csgenericrgb\c91373\c98824\c91373;\csgenericrgb\c3922\c30980\c40392;
+\csgenericrgb\c44706\c0\c50980;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf2 @BE_Lockteq\
+  \cf3 Scenario\cf4 : I should be able to navigate to lockteq and validate the fields\
+    \cf3 When \cf4 user clicks Main Menu\cf5  Lockteq\
+    \cf3 Then \cf4 the "\cf5 Devices\cf4 " page should be displayed\
+    \cf3 Then \cf4 the booking table should have headers:\
+      \cf3 | \cf5 LOCK NAME     \cf3 | \cf5 FLOODLIGHTS \cf3 | \cf5 FACILITIES \cf3 | \cf5 STATUS \cf3 | \cf5 LAST CHECKED \cf3 | \cf5 MANUAL UNLOCK \cf3 | \cf5 ACTIONS\cf3 |\
+
+\f2\i \cf6 #    And I click page no "3"\
+#    Then I should see the selected page number is "3"\
+#    And I select booking no "1" from booking table and click edit\
+#    Then I should be able to view the booking in the order summary modal\
+#    And I click on edit multiple bookings in the order modal\
+#    Then the response code should be 200\
+#    And I select all bookings from order modal\
+#    And I verify the selected bookings in order modal\
+#    And I click on link having text "Cancel bookings"\
+#    Then I should get confirmation modal\
+#    And I click on element with xpath "//lib-ng-modal/div[1]/button"\
+#    And I click button Close\
+#    And I close browser\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\i0 \cf2 @Then\cf4 (\cf7 "\cb8 the devices table should have headers:\cb1 "\cf4 )\
+\cf3 public void \cf9 TheDevicesTableShouldHaveHeaders\cf4 (\cf0 List\cf4 <\cf0 String\cf4 > expectedHeaders) \{\
+    \cf0 WebElement table \cf4 = \cf10 driver\cf4 .findElement(\cf0 By\cf4 .
+\f2\i xpath
+\f1\i0 (\cf7 "//ws-sb-tabview"\cf4 )); 
+\f2\i \cf6 // Replace with the actual ID or locator of your table\
+    
+\f1\i0 \cf0 List\cf4 <\cf0 WebElement\cf4 > \cf0 headerElements \cf4 = \cf0 table\cf4 .findElements(\cf0 By\cf4 .
+\f2\i tagName
+\f1\i0 (\cf7 "th"\cf4 ));\
+\
+    
+\f2\i \cf6 // Extract the text from the header elements and convert it to a list of strings\
+    
+\f1\i0 \cf0 List\cf4 <\cf0 String\cf4 > \cf0 actualHeaders \cf4 = \cf0 headerElements\cf4 .stream()\
+        .map(\cf0 WebElement\cf4 ::getText)\
+        .collect(\cf0 Collectors\cf4 .
+\f2\i toList
+\f1\i0 ());\
+    
+\f2\i assertEquals
+\f1\i0 (expectedHeaders, \cf0 actualHeaders\cf4 );\
+\}\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\i \cf6 \
+\
+}
